@@ -30,7 +30,8 @@ namespace Steamworks.Data
 			if ( details == null ) details = noDetails;
 
 			var r = await SteamUserStats.Internal.UploadLeaderboardScore( Id, LeaderboardUploadScoreMethod.ForceUpdate, score, details, details.Length );
-			if ( !r.HasValue ) return null;
+			if ( !r.HasValue ) 
+				return null;
 
 			return LeaderboardUpdate.From( r.Value );
 		}
@@ -43,7 +44,8 @@ namespace Steamworks.Data
 			if ( details == null ) details = noDetails;
 
 			var r = await SteamUserStats.Internal.UploadLeaderboardScore( Id, LeaderboardUploadScoreMethod.KeepBest, score, details, details.Length );
-			if ( !r.HasValue ) return null;
+			if ( !r.HasValue ) 
+				return null;
 
 			return LeaderboardUpdate.From( r.Value );
 		}
@@ -54,7 +56,8 @@ namespace Steamworks.Data
 		public async Task<Result> AttachUgc( Ugc file )
 		{
 			var r = await SteamUserStats.Internal.AttachLeaderboardUGC( Id, file.Handle );
-			if ( !r.HasValue ) return Result.Fail;
+			if ( !r.HasValue ) 
+				return Result.Fail;
 
 			return r.Value.Result;
 		}

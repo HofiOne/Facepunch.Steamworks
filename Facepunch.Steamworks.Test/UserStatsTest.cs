@@ -110,8 +110,10 @@ namespace Steamworks
 		public async Task GetScoresFromFriends()
 		{
 			var leaderboard = await SteamUserStats.FindLeaderboardAsync( "Testleaderboard" );
+			Assert.IsTrue( leaderboard.HasValue );
 
 			var friendScores = await leaderboard.Value.GetScoresFromFriendsAsync();
+			Assert.IsNotNull( friendScores );
 
 			foreach ( var e in friendScores )
 			{
@@ -156,6 +158,22 @@ namespace Steamworks
 			{
 				Console.WriteLine( $"{e.GlobalRank}: {e.Score} {e.User}" );
 			}
+		}
+
+		[TestMethod]
+		public async Task GetScoresForUsersAsync()
+		{
+			var leaderboard = await SteamUserStats.FindLeaderboardAsync( "Testleaderboard" );
+			Assert.IsTrue( leaderboard.HasValue );
+
+			SteamId[] selfID = new SteamId[1] { SteamClient.SteamId };
+			LeaderboardEntry[] result = await leaderboard.Value.GetScoresForUsersAsync( selfID );
+
+			Assert.IsNotNull( result );
+
+			Assert.IsTrue(result.Length > 0);
+
+			Console.WriteLine( $"{result[0].GlobalRank}: {result[0].Score} {result[0].User}" );
 		}
 
 		[TestMethod]

@@ -32,7 +32,7 @@ namespace Steamworks
 			//
 			// Init Client
 			//
-			Steamworks.SteamClient.Init( 252490 );
+			Steamworks.SteamClient.Init( 1932090 );
 
 			//
 			// Init Server
@@ -44,7 +44,7 @@ namespace Steamworks
 				QueryPort = 28016
 			};
 
-			Steamworks.SteamServer.Init( 252490, serverInit );
+			Steamworks.SteamServer.Init( 1932090, serverInit );
 
 			//
 			// Needs to happen before LogOnAnonymous
